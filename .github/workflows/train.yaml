@@ -1,9 +1,6 @@
 name: Training and Docker Build Pipeline
 
 on:
-  push:
-    branches:
-      - staging
   pull_request:
     branches:
       - staging
