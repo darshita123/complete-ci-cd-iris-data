@@ -3,7 +3,7 @@ name: Training and Docker Build Pipeline
 on:
   push:
     branches:
-      - main
+      - Staging
 
 jobs:
   train-and-dockerize:
