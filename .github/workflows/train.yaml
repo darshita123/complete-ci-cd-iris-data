@@ -4,7 +4,9 @@ on:
   push:
     branches:
       - Staging
-
+  pull_request:
+    branches:
+      - Staging
 jobs:
   train-and-dockerize:
     runs-on: ubuntu-latest
