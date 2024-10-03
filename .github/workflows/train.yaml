@@ -3,10 +3,10 @@ name: Training and Docker Build Pipeline
 on:
   push:
     branches:
-      - Staging
+      - staging
   pull_request:
     branches:
-      - Staging
+      - staging
 jobs:
   train-and-dockerize:
     runs-on: ubuntu-latest
