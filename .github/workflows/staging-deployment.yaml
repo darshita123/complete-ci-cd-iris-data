@@ -1,0 +1,35 @@
+name: Deploy to Azure Web App
+
+on:
+  workflow_run:
+    workflows: ["Training and Docker Build Pipeline"]  # Name of the first workflow (train.yml)
+    types:
+    -completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install kubectl
+        run: |
+        curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+        chmod +x ./kubectl
+        sudo mv ./kubectl /usr/local/bin/kubectl
+      
+      - name: Azure login
+        run: az login
+
+      - name: subscription set for aks
+        run: az account set --subscription db962ab2-7e93-4bc4-88a4-49e99f7ee55d     
+
+      - name: credential setup
+        run: az aks get-credentials --resource-group iris_actions_demo --name Actions_demo --overwrite-existing
+
+      - name: running the deployment file 
+        run: kubectl apply -f deployment.yaml
+
+      # - name: Azure login
+      #   run: az login
