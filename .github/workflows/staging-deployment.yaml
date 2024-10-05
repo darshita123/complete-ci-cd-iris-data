@@ -4,8 +4,8 @@ on:
   workflow_run:
     workflows: ["Training and Docker Build Pipeline"]  # Name of the first workflow (train.yml)
     types:
-    -completed
-
+      - completed
+      
 jobs:
   deploy:
     runs-on: ubuntu-latest
