@@ -22,6 +22,15 @@ jobs:
       # - name: Azure login
       #   run: az login
 
+      - name: Log in to Azure
+        run: |
+          az login --service-principal \
+            --username ${{ secrets.AZURE_CLIENT_ID }} \
+            --password ${{ secrets.AZURE_CLIENT_SECRET }} \
+            --tenant ${{ secrets.AZURE_TENANT_ID }}
+          az account set --subscription ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+          
       - name: subscription set for aks
         run: az account set --subscription db962ab2-7e93-4bc4-88a4-49e99f7ee55d     
 
@@ -40,7 +49,9 @@ jobs:
         run: pip install pytest httpx
 
       - name: run the unit test file
-        run: pytest python_test.py    
+        run: pytest python_test.py  
+
+
 
 
       # - name: Azure login
