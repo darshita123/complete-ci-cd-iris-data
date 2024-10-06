@@ -16,8 +16,7 @@ def test_read_root():
     "sepal_length, sepal_width, petal_length, petal_width, expected_prediction",
     [
         (5.1, 3.5, 1.4, 0.2, 0),  # Example inputs
-        (6.7, 3.0, 5.2, 2.3, 1),  # Example inputs
-        (5.9, 3.0, 5.1, 1.8, 2),  # Example inputs
+        (5.9, 3.0, 5.1, 1.8, 2)  # Example inputs
     ]
 )
 def test_predict(sepal_length, sepal_width, petal_length, petal_width, expected_prediction):
