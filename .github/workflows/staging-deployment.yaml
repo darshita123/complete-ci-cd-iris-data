@@ -1,4 +1,4 @@
-name: Deploy to Azure Web App
+name: Deploy to Azure kube Instance
 
 on:
   workflow_run:
@@ -8,9 +8,9 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  #(it is machine for github action workflow , all the task run on this machine)
     steps:
-      - name: Checkout code
+      - name: Checkout code    #(fetching the repositery(frtch all the codes))
         uses: actions/checkout@v2
 
       - name: Install kubectl
@@ -30,6 +30,18 @@ jobs:
 
       - name: running the deployment file 
         run: kubectl apply -f deployment.yaml
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.9'
+
+      - name: install the required dependencies for unit test cases
+        run: pip install pytest httpx
+
+      - name: run the unit test file
+        run: pytest python_test.py    
+
 
       # - name: Azure login
       #   run: az login
