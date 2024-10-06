@@ -20,8 +20,7 @@ jobs:
           sudo mv ./kubectl /usr/local/bin/kubectl
       
       - name: Azure login
-        run: az login --user ${{ secrets.USERNAME }} --password ${{ secrets.PASSWORD }}
-
+        run: az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_TENANT_ID }}
 
       # - name: Log in to Azure
       #   env: # This ensures the secrets are correctly referenced
